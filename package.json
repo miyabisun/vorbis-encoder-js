@@ -1,0 +1,24 @@
+{
+  "name": "libvorbis-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "command": "docker run --rm -v $(pwd):/src -t miyabisun/libvorbis-js",
+    "build": "docker run --rm -v $(pwd):/src -t miyabisun/libvorbis-js make",
+    "clean": "docker run --rm -v $(pwd):/src -t miyabisun/libvorbis-js make clean",
+    "rebuild": "npm run clean && npm run build",
+    "docker:build": "docker build -t miyabisun/libvorbis-js ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miyabisun/libvorbis-js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/miyabisun/libvorbis-js/issues"
+  },
+  "homepage": "https://github.com/miyabisun/libvorbis-js#readme"
+}
