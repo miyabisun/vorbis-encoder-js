@@ -24,6 +24,7 @@ EMCC_LINK_OPTIONS :=\
  -s ALLOW_MEMORY_GROWTH=0\
  -s ASM_JS=1\
  -s EXPORTED_FUNCTIONS=@src/exports.json\
+ --post-js src/post.js
 
 LIBOGG_FILES :=\
  bitwise.c\
@@ -64,15 +65,15 @@ $(DEST): $(TARGET_SOURCES) src/exports.json
 	@mkdir -p dist
 	emcc -01 $(EMCC_LINK_OPTIONS) -o $(DEST) $(TARGET_SOURCES)
 
-$(LIBOGG_OUTPUT_DIR)/%.o: $(TMP_LIBOGG_DIR)/ $(TMP_LIBVORBIS_DIR)/ include/
+$(LIBOGG_OUTPUT_DIR)/%.o: $(TMP_LIBOGG_DIR) $(TMP_LIBVORBIS_DIR) include
 	@mkdir -p $(LIBOGG_OUTPUT_DIR)
 	emcc $(EMCC_COMPILE_OPTIONS) -o $@ $(TMP_LIBOGG_DIR)/src/$(basename $(notdir $@)).c
 
-$(LIBVORBIS_OUTPUT_DIR)/%.o: $(TMP_LIBOGG_DIR)/ $(TMP_LIBVORBIS_DIR)/ include/
+$(LIBVORBIS_OUTPUT_DIR)/%.o: $(TMP_LIBOGG_DIR) $(TMP_LIBVORBIS_DIR) include
 	@mkdir -p $(LIBVORBIS_OUTPUT_DIR)
 	emcc $(EMCC_COMPILE_OPTIONS) -o $@ $(TMP_LIBVORBIS_DIR)/lib/$(basename $(notdir $@)).c
 
-$(SRC_OUTPUT_DIR)/%.o: src/%.c $(TMP_LIBOGG_DIR)/ $(TMP_LIBVORBIS_DIR)/ include/
+$(SRC_OUTPUT_DIR)/%.o: src/%.c $(TMP_LIBOGG_DIR) $(TMP_LIBVORBIS_DIR) include
 	@mkdir -p $(SRC_OUTPUT_DIR)
 	emcc $(EMCC_COMPILE_OPTIONS) -o $@ src/$(basename $(notdir $@)).c
 

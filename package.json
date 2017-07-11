@@ -1,6 +1,6 @@
 {
-  "name": "libvorbis-js",
-  "version": "1.0.0",
+  "name": "vorbis-encoder-js",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
