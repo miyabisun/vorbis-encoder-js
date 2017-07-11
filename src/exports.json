@@ -1,5 +1,7 @@
 [
   "_encoder_init",
+  "_encoder_set_tag",
+  "_encoder_stream_init",
   "_encoder_clear",
   "_encoder_analysis_buffer",
   "_encoder_process",

@@ -1,4 +1,5 @@
-// adapted from https://svn.xiph.org/trunk/vorbis/examples/encoder_example.c
+// adapted https://github.com/xiph/vorbis/blob/master/examples/encoder_example.c
+#include <emscripten.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
@@ -19,25 +20,31 @@ typedef struct encoder_state {
 static void encoder_add_data(encoder_state *enc);
 
 encoder_state *encoder_init(int num_ch, float sample_rate, float quality) {
-  ogg_packet h_comm, h_code;
   encoder_state *enc = malloc(sizeof(encoder_state));
   vorbis_info_init(&enc->vi);
   vorbis_encode_init_vbr(&enc->vi, num_ch, sample_rate, quality);
   vorbis_comment_init(&enc->vc);
-  vorbis_comment_add_tag(&enc->vc, "ENCODER", "OggVorbisEncoder.js");
   vorbis_analysis_init(&enc->vd, &enc->vi);
   vorbis_block_init(&enc->vd, &enc->vb);
   srand(time(NULL));
-  ogg_stream_init(&enc->os, rand());
   enc->data = NULL;
   enc->len = 0;
+  return enc;
+}
+
+void encoder_set_tag(encoder_state *enc, const char *tag, const char *contents) {
+  vorbis_comment_add_tag(&enc->vc, tag, contents);
+}
+
+void encoder_stream_init(encoder_state *enc) {
+  ogg_packet h_comm, h_code;
   vorbis_analysis_headerout(&enc->vd, &enc->vc, &enc->op, &h_comm, &h_code);
+  ogg_stream_init(&enc->os, rand());
   ogg_stream_packetin(&enc->os, &enc->op);
   ogg_stream_packetin(&enc->os, &h_comm);
   ogg_stream_packetin(&enc->os, &h_code);
   while (ogg_stream_flush(&enc->os, &enc->og) != 0)
     encoder_add_data(enc);
-  return enc;
 }
 
 void encoder_clear(encoder_state *enc) {
