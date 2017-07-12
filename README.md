@@ -19,11 +19,11 @@ var Encoder = require("vorbis-encoder-js").encoder;
 
 var sampleRate = audioBuffer.sampleRate;
 var numberOfChannels = audioBuffer.numberOfChannels;
-var quality = 0; // -1 to 1
+var quality = 0; // -0.1 to 1 (Vorbis quality)
 var tags = {
   TITLE: "test_ogg",
-  ALBUM: "テストアルバム",
-  Artist: "みやびさん",
+  ALBUM: "テストアルバム", // UTF-8 is usable
+  ARTIST: "miyabisun",
   LOOPSTART: "10000",
   LOOPLENGTH: "30000"
 };
@@ -32,4 +32,22 @@ var encoder = new Encoder(sampleRate, numberOfChannels, quality, tags);
 encoder.encodeFrom(audioBuffer);
 var blob = encoder.finish();
 ```
+
+# Build
+
+Docker and Node.js are required to build the library.
+
+```Bash
+$ npm run build
+```
+
+Download and extract libogg + libvorbis, build library files (see [package.json](https://github.com/miyabisun/vorbis-encoder-js/blob/master/package.json) and [Makefile](https://github.com/miyabisun/vorbis-encoder-js/blob/master/Makefile) for more details).
+
+# License
+
+libogg and libvorbis are released under Xiph's BSD-like license below. JavaScript-converted part of this library follows the same license.
+
+[http://www.xiph.org/licenses/bsd/](http://www.xiph.org/licenses/bsd/)
+
+This library is released under MIT licence, see [LICENSE.txt](https://github.com/miyabisun/vorbis-encoder-js/blob/master/LICENSE.txt).
 
