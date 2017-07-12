@@ -10,13 +10,6 @@ require! {
 }
 Encoder = proxyquire.no-call-thru!.load \../../src/encoder.ls,
   \./libvorbis.js : libvorbis
-global <<< Blob: class Blob
-  (ogg-buffers)->
-    @ogg-buffers = ogg-buffers
-  buffer:~ ->
-    @ogg-buffers
-    |> map (.buffer) >> (-> new Buffer it)
-    |> Buffer.concat
 
 filename = __filename.replace(/^.*(test)/, \test)
 describe filename, ->
@@ -43,6 +36,6 @@ describe filename, ->
       params.audio-buffer |> expect >> (.to.be.an.instanceof AudioBuffer)
     specify \create-ogg (done)->
       <- mkdirp "#__dirname/../../tmp"
-      fs.write-file-sync "#__dirname/../../tmp/test.ogg", params.blob.buffer
+      fs.write-file-sync "#__dirname/../../tmp/test.ogg", params.blob
       done!
 

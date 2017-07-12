@@ -43,7 +43,13 @@ module.exports = class Encoder
     @process length
   finish: (mime-type)->
     @process 0
-    blob = new Blob @ogg-buffers, type: (mime-type or \audio/ogg)
+    blob = switch
+      | typeof Blob isnt \undefined =>
+        new Blob @ogg-buffers, type: (mime-type or \audio/ogg)
+      | _ =>
+        @ogg-buffers
+        |> map (.buffer) >> (-> new Buffer it)
+        |> Buffer.concat
     @cleanup!
     return blob
   cancel: ->
