@@ -31675,27 +31675,27 @@ function _memset(ptr, value, num) {
       value4 = value | (value << 8) | (value << 16) | (value << 24);
 
       while((ptr|0) <= (block_aligned_end|0)) {
-        HEAP32[((ptr)>>2)]=value4;
-        HEAP32[(((ptr)+(4))>>2)]=value4;
-        HEAP32[(((ptr)+(8))>>2)]=value4;
-        HEAP32[(((ptr)+(12))>>2)]=value4;
-        HEAP32[(((ptr)+(16))>>2)]=value4;
-        HEAP32[(((ptr)+(20))>>2)]=value4;
-        HEAP32[(((ptr)+(24))>>2)]=value4;
-        HEAP32[(((ptr)+(28))>>2)]=value4;
-        HEAP32[(((ptr)+(32))>>2)]=value4;
-        HEAP32[(((ptr)+(36))>>2)]=value4;
-        HEAP32[(((ptr)+(40))>>2)]=value4;
-        HEAP32[(((ptr)+(44))>>2)]=value4;
-        HEAP32[(((ptr)+(48))>>2)]=value4;
-        HEAP32[(((ptr)+(52))>>2)]=value4;
-        HEAP32[(((ptr)+(56))>>2)]=value4;
-        HEAP32[(((ptr)+(60))>>2)]=value4;
+        HEAP32[(ptr)>>2]=value4;
+        HEAP32[((ptr)+(4))>>2]=value4;
+        HEAP32[((ptr)+(8))>>2]=value4;
+        HEAP32[((ptr)+(12))>>2]=value4;
+        HEAP32[((ptr)+(16))>>2]=value4;
+        HEAP32[((ptr)+(20))>>2]=value4;
+        HEAP32[((ptr)+(24))>>2]=value4;
+        HEAP32[((ptr)+(28))>>2]=value4;
+        HEAP32[((ptr)+(32))>>2]=value4;
+        HEAP32[((ptr)+(36))>>2]=value4;
+        HEAP32[((ptr)+(40))>>2]=value4;
+        HEAP32[((ptr)+(44))>>2]=value4;
+        HEAP32[((ptr)+(48))>>2]=value4;
+        HEAP32[((ptr)+(52))>>2]=value4;
+        HEAP32[((ptr)+(56))>>2]=value4;
+        HEAP32[((ptr)+(60))>>2]=value4;
         ptr = (ptr + 64)|0;
       }
 
       while ((ptr|0) < (aligned_end|0) ) {
-        HEAP32[((ptr)>>2)]=value4;
+        HEAP32[(ptr)>>2]=value4;
         ptr = (ptr+4)|0;
       }
     }
@@ -31809,27 +31809,27 @@ function _memcpy(dest, src, num) {
       aligned_dest_end = (dest_end & -4)|0;
       block_aligned_dest_end = (aligned_dest_end - 64)|0;
       while ((dest|0) <= (block_aligned_dest_end|0) ) {
-        HEAP32[((dest)>>2)]=((HEAP32[((src)>>2)])|0);
-        HEAP32[(((dest)+(4))>>2)]=((HEAP32[(((src)+(4))>>2)])|0);
-        HEAP32[(((dest)+(8))>>2)]=((HEAP32[(((src)+(8))>>2)])|0);
-        HEAP32[(((dest)+(12))>>2)]=((HEAP32[(((src)+(12))>>2)])|0);
-        HEAP32[(((dest)+(16))>>2)]=((HEAP32[(((src)+(16))>>2)])|0);
-        HEAP32[(((dest)+(20))>>2)]=((HEAP32[(((src)+(20))>>2)])|0);
-        HEAP32[(((dest)+(24))>>2)]=((HEAP32[(((src)+(24))>>2)])|0);
-        HEAP32[(((dest)+(28))>>2)]=((HEAP32[(((src)+(28))>>2)])|0);
-        HEAP32[(((dest)+(32))>>2)]=((HEAP32[(((src)+(32))>>2)])|0);
-        HEAP32[(((dest)+(36))>>2)]=((HEAP32[(((src)+(36))>>2)])|0);
-        HEAP32[(((dest)+(40))>>2)]=((HEAP32[(((src)+(40))>>2)])|0);
-        HEAP32[(((dest)+(44))>>2)]=((HEAP32[(((src)+(44))>>2)])|0);
-        HEAP32[(((dest)+(48))>>2)]=((HEAP32[(((src)+(48))>>2)])|0);
-        HEAP32[(((dest)+(52))>>2)]=((HEAP32[(((src)+(52))>>2)])|0);
-        HEAP32[(((dest)+(56))>>2)]=((HEAP32[(((src)+(56))>>2)])|0);
-        HEAP32[(((dest)+(60))>>2)]=((HEAP32[(((src)+(60))>>2)])|0);
+        HEAP32[(dest)>>2]=((HEAP32[(src)>>2])|0);
+        HEAP32[((dest)+(4))>>2]=((HEAP32[((src)+(4))>>2])|0);
+        HEAP32[((dest)+(8))>>2]=((HEAP32[((src)+(8))>>2])|0);
+        HEAP32[((dest)+(12))>>2]=((HEAP32[((src)+(12))>>2])|0);
+        HEAP32[((dest)+(16))>>2]=((HEAP32[((src)+(16))>>2])|0);
+        HEAP32[((dest)+(20))>>2]=((HEAP32[((src)+(20))>>2])|0);
+        HEAP32[((dest)+(24))>>2]=((HEAP32[((src)+(24))>>2])|0);
+        HEAP32[((dest)+(28))>>2]=((HEAP32[((src)+(28))>>2])|0);
+        HEAP32[((dest)+(32))>>2]=((HEAP32[((src)+(32))>>2])|0);
+        HEAP32[((dest)+(36))>>2]=((HEAP32[((src)+(36))>>2])|0);
+        HEAP32[((dest)+(40))>>2]=((HEAP32[((src)+(40))>>2])|0);
+        HEAP32[((dest)+(44))>>2]=((HEAP32[((src)+(44))>>2])|0);
+        HEAP32[((dest)+(48))>>2]=((HEAP32[((src)+(48))>>2])|0);
+        HEAP32[((dest)+(52))>>2]=((HEAP32[((src)+(52))>>2])|0);
+        HEAP32[((dest)+(56))>>2]=((HEAP32[((src)+(56))>>2])|0);
+        HEAP32[((dest)+(60))>>2]=((HEAP32[((src)+(60))>>2])|0);
         dest = (dest+64)|0;
         src = (src+64)|0;
       }
       while ((dest|0) < (aligned_dest_end|0) ) {
-        HEAP32[((dest)>>2)]=((HEAP32[((src)>>2)])|0);
+        HEAP32[(dest)>>2]=((HEAP32[(src)>>2])|0);
         dest = (dest+4)|0;
         src = (src+4)|0;
       }
